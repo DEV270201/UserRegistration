@@ -10,9 +10,10 @@
      <div class="nav_bar">
        <h3>Registration Page</h3>
      </div>
+     <!-- never use enctype="multipart/form-data" when your input does not contain any files -->
      <div class="file_upload">
        <h5>Please fill all the required fields</h5>
-       <form action="/register" method="POST" enctype="multipart/form-data" class="myform">
+       <form action="/register" method="POST" enctype="application/x-www-form-urlencoded" class="myform">
          <input type="text" placeholder="Enter your name" name="name"/>
          <input type="text" placeholder="Enter your userName" name="username"/>
          <input type="password" placeholder="Enter your password" name="password"/>
