@@ -1,6 +1,6 @@
 //different types of errors that can occur in the server
 
-export class AuthenticationError extends Error{
+class AuthenticationError extends Error{
      constructor(message){
          super(message);
          this.statusCode = 401;
@@ -8,7 +8,7 @@ export class AuthenticationError extends Error{
      }
 }
 
-export class NotFoundError extends Error{
+class NotFoundError extends Error{
     constructor(message){
         super(message);
         this.statusCode = 404;
@@ -16,7 +16,7 @@ export class NotFoundError extends Error{
     }
 }
 
-export class InternalServerError extends Error{
+class InternalServerError extends Error{
     constructor(message){
         super(message);
         this.statusCode = 500;
@@ -24,10 +24,17 @@ export class InternalServerError extends Error{
     }
 }
 
-export class DatabaseError extends Error{
+class DatabaseError extends Error{
     constructor(message){
         super(message);
         this.statusCode = 503;
         this.name - "DatabaseError";
     }
 }
+
+module.exports = {
+                 AuthenticationError,
+                 InternalServerError,
+                 NotFoundError,
+                 DatabaseError
+                }
