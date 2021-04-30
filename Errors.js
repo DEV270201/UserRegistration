@@ -1,5 +1,14 @@
 //different types of errors that can occur in the server
 
+
+class ClientError extends Error{
+    constructor(message){
+        super(message);
+        this.statusCode = 400;
+        this.name - "ClientError";
+    }
+}
+
 class AuthenticationError extends Error{
      constructor(message){
          super(message);
@@ -33,6 +42,7 @@ class DatabaseError extends Error{
 }
 
 module.exports = {
+                 ClientError,
                  AuthenticationError,
                  InternalServerError,
                  NotFoundError,
