@@ -19,7 +19,7 @@ app.use(userRouter);
 
 
 //middleware for the unhandled routes
-app.use("*",(req,res,next)=>{
+app.all("*",(req,res,next)=>{
    return next(new NotFoundError("Sorry, the requested page is not available"));  //passing the error to the global middleware
 });
 
@@ -28,6 +28,7 @@ app.use((err,req,res,next)=>{
     err.statusCode = err.statusCode || 500;
     err.status = err.status || "Fail";
     res.status(err.statusCode).json({
+        statusCode : err.statusCode,
         status : err.status,
         message : err.message,
     });

@@ -1,27 +1,56 @@
 const User = require("../model/userModel");
-const {DatabaseError} = require("../Errors");
+const { DatabaseError, ClientError } = require("../Errors");
+// const validateInput = require("../Joi/UserJoi");
 
 exports.Register = async (userCredentials) => {
     try {
-        console.log("hello");
-        // const { name, username, password, password2 } = req.body;
-        let name = userCredentials.name;
-        let username = userCredentials.username;
-        let password = userCredentials.password;
-        console.log("passwords are matching");
+        const user = await User.findOne({ username: userCredentials.username });
+        if (user) {
+            throw new ClientError("User already exists!!");
+        }
         const userObj = {
-            name: name,
-            username: username,
-            password: password,
+            name: userCredentials.name,
+            username:  userCredentials.username,
+            password: userCredentials.password,
         };
         await User.create(userObj);
         return;
     } catch (err) {
-        return next(new DatabaseError("something went wrong!!"));
+        // console.log(err);
+          if(err.statusCode === 400)
+            throw err;
+          else
+            throw new DatabaseError("something went wrong!!");
     }
 }
 
 
+
+
+// try {
+//     const userCredentials = await validateInput({ ...req.body });
+//     const { name, username, password } = userCredentials;
+//     const user = await User.findOne({ username: username });
+//     if (user) {
+//         throw new ClientError("User already exists!!");
+//     }
+//     const userObj = {
+//         name: name,
+//         username: username,
+//         password: password,
+//     };
+//     await User.create(userObj);
+//     res.status(201).json({
+//         status: "success",
+//         message: "User registered successfully",
+//     });
+// } catch (err) {
+//     // console.log(err);
+//       if(err.statusCode === 400)
+//         return next(err);
+//       else
+//         return next(new DatabaseError("something went wrong!!"));
+// }
 
 // try{
 //     if (password !== password2) {
