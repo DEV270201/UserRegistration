@@ -1,0 +1,99 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+  
+  body{
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  .nav_bar{
+    height: 80px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+  }
+  
+  .nav_bar > h3{
+    margin-left: 20px;
+    font-weight: 400;
+  }
+  
+  .file_upload{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%,-50%);
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 50%;
+  }
+  .file_upload > h5{
+    margin: 15px 0px;
+    font-weight: 300;
+    font-style: italic;
+    text-transform: capitalize;
+  }
+  
+  .myform{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .myform > input{
+    margin: 10px;
+  }
+  
+  .mybtn{
+    background-color: white;
+    border: 1px solid dodgerblue;
+    color: dodgerblue;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 15px 0px;
+  }
+  
+  .mybtn:hover{
+    background-color: dodgerblue;
+    color: white;
+    cursor: pointer;
+  }
+
+  .change{
+    display: flex;
+    justify-content: space-around;
+    width: 300px;
+    margin-right: 25px;
+  }
+
+  .change a{
+    text-decoration: none;
+    color : white;
+  }
+
+  .change a:hover{
+    color : dodgerblue;
+  }
+
+ .link:active{
+    color : dodgerblue;
+  }
+
+  .home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+  }
