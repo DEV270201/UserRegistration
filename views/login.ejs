@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include("../partials/header.ejs") %>
+</head>
+
+<body>
+    <%- include("../partials/navbar.ejs" , {title : title}) %>
+    <div class="file_upload">
+        <h5>Fill your credentials to login!!</h5>
+        <form action="/login" method="POST" enctype="application/x-www-form-urlencoded" class="myform">
+            <input type="text" placeholder="Enter your name" name="username" />
+            <input type="password" placeholder="Enter your password" name="password" />
+            <button type="submit" class="mybtn">Login</button>
+        </form>
+    </div>
+</body>
+
+</html>

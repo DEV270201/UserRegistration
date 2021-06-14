@@ -1,0 +1,24 @@
+<div class="nav_bar">
+    <h3>
+        <%= title %>
+    </h3>
+    <% if(title == "Authenticator" ){ %>
+        <div class="change">
+            <a href="/register" class="link">Register</a>
+            <a href="/login" class="link">Login</a>
+        </div>
+        <% } else if(title == "Registration Page" ){ %>
+            <div class="change">
+                <a href="/" class="link">Home</a>
+                <a href="/login" class="link">Login</a>
+            </div>
+            <% } else { %>
+                <div class="change">
+                    <a href="/" class="link">Home</a>
+                    <a href="/register" class="link">Register</a>
+                </div>
+                <% } %>
+                    <!-- <a href="/profile" class="link">Profile</a>
+        
+        <a href="/logout" class="link">LogOut</a> -->
+</div>
