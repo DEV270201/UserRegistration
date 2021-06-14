@@ -2,19 +2,28 @@ const express = require("express");
 const app = express();
 const userRouter = require("./routes/user");
 const {NotFoundError} = require("./Errors");
+const passport = require("passport");
+require("./passport")(passport);
 
 if(process.env.NODE_ENV === "development"){
     console.log("in the development stage");
 }
 
-app.use((req,res,next)=>{
-    console.log("middleware");
-    next();
-});
+//set the view engine
+app.set("view engine" , "ejs");
 
+//body-parser middleware
 app.use(express.json());
 app.use(express.urlencoded({extended : true}));
+
+//passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+//static files middleware
 app.use(express.static(`${__dirname}/public`));
+
+//custom middleware
 app.use(userRouter);
 
 
