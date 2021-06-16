@@ -6,6 +6,7 @@ const passport = require("passport");
 // const cookieSession = require("cookie-session");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const flash = require("connect-flash"); //used for flashing messages on redirects
 require("./passport")(passport);
 
 
@@ -47,7 +48,10 @@ app.use(session({
         maxAge : 86400 * 1000,
         secure : false,
     }
-}))
+}));
+
+//since the flash messages are stored in the sessions , so first set up the sessions
+app.use(flash());
 
 //passport middleware
 app.use(passport.initialize());

@@ -3,9 +3,11 @@ const {AuthenticationError} = require("../Errors");
 
 const AuthMiddleware = (req,res,next)=>{
    if(!req.user){
-       throw new AuthenticationError("user not logged in!!");
+     res.redirect("/login");
+   }else{
+    next();
    }
-   next();
+ 
 }
 
 module.exports = AuthMiddleware;
