@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <%if (message != "") {%>
+        <div class="error">
+            <h2 class="error_text"><%= message %></h2>
+        </div>
+    <% } %>
+
+    <script>
+    
+        let msg_div = document.querySelector(".error");
+        let msg = document.querySelector(".error_text");
+        // let body = document.
+        if(msg != undefined){
+            setTimeout(()=>{
+               console.log(msg_div.parentNode);
+               msg_div.parentNode.removeChild(msg_div);
+            },3000);
+        }
+    
+    </script>
+
+</body>
+</html>
