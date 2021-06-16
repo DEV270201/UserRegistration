@@ -2,23 +2,31 @@
     <h3>
         <%= title %>
     </h3>
-    <% if(title == "Authenticator" ){ %>
+    <% if(title=="Authenticator" ){ %>
         <div class="change">
             <a href="/register" class="link">Register</a>
             <a href="/login" class="link">Login</a>
         </div>
-        <% } else if(title == "Registration Page" ){ %>
+        <% } else if(title=="Registration Page" ){ %>
             <div class="change">
                 <a href="/" class="link">Home</a>
                 <a href="/login" class="link">Login</a>
             </div>
-            <% } else { %>
+            <% } else if(title=="Dashboard" ){ %>
                 <div class="change">
-                    <a href="/" class="link">Home</a>
-                    <a href="/register" class="link">Register</a>
+                    <a href="/profile" class="link">Profile</a>
+                    <a href="/logout" class="link">LogOut</a>
                 </div>
-                <% } %>
-                    <!-- <a href="/profile" class="link">Profile</a>
-        
-        <a href="/logout" class="link">LogOut</a> -->
+                <% } else if(title=="Profile" ){ %>
+                    <div class="change">
+                        <a href="/dashboard" class="link">Dashboard</a>
+                        <a href="/logout" class="link">LogOut</a>
+                    </div>
+                    <% } else { %>
+                        <div class="change">
+                            <a href="/" class="link">Home</a>
+                            <a href="/register" class="link">Register</a>
+                        </div>
+                        <% } %>
+
 </div>

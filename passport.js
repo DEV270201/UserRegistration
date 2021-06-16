@@ -51,19 +51,22 @@ const Authentication = (pass_port) => {
 
 //serializing the user i.e sending some unique property which will be stuffed inside the cookie
 passport.serializeUser((user,done)=>{
-//    done(null,user.id)
-console.log(user);
-console.log(user.id);
+   console.log("serializing");
+   done(null,user.id);
+
 });
 
 
 //STEP 3
 
-//we will grab the unique property to fon d the user who has requested the page
-passport.deserializeUser((prop,done)=>{
+//we will grab the unique property to find the user who has requested the page
+passport.deserializeUser(async (id,done)=>{
+   console.log("deserializing");
 
+  const user = await  User.findById(id);
+  console.log(user);
+  done(null,user);
 })
-
 
 }
 

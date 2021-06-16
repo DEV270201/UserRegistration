@@ -3,6 +3,7 @@ const app = express();
 const userRouter = require("./routes/user");
 const {NotFoundError} = require("./Errors");
 const passport = require("passport");
+const cookieSession = require("cookie-session");
 require("./passport")(passport);
 
 if(process.env.NODE_ENV === "development"){
@@ -16,16 +17,32 @@ app.set("view engine" , "ejs");
 app.use(express.json());
 app.use(express.urlencoded({extended : true}));
 
+//cookie
+app.use(cookieSession({
+    name : "Authenticator",
+    maxAge : 86400 * 1000,
+    keys : [process.env.CookieKey],
+    // secure : true,
+    // resave : false,
+}))
+
 //passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 //static files middleware
 app.use(express.static(`${__dirname}/public`));
+console.log("-------------------------------------------------------------------");
 
-//custom middleware
+//route middleware
 app.use(userRouter);
 
+//custom middleware   -> this middleware would never run because the request made to any route will execute the route middleware
+app.use((req,res,next)=>{
+    console.log("middleware");
+    next();
+});
 
 //middleware for the unhandled routes
 app.all("*",(req,res,next)=>{
