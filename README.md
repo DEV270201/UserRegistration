@@ -1,2 +1,10 @@
 # UserRegistration
-trying to implement user registration 
+
+Authenticator : 
+
+Tech Used :
+Node
+Express
+Mongoose
+Mongodb
+
