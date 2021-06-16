@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<%- include("../partials/header.ejs") %>
+</head>
+<body>
+    <%- include("../partials/navbar.ejs" , {title : title}) %>
+    <div class="profile">
+        <h2 class="head_details">User Details</h2>
+        <h5 class="name">Name :  <%= user.name %></h5>
+        <h5 class="name">UserName :  <%= user.username %></h5>
+    </div>
+</body>
+</html>
