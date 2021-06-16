@@ -3,8 +3,11 @@ const app = express();
 const userRouter = require("./routes/user");
 const {NotFoundError} = require("./Errors");
 const passport = require("passport");
-const cookieSession = require("cookie-session");
+// const cookieSession = require("cookie-session");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 require("./passport")(passport);
+
 
 if(process.env.NODE_ENV === "development"){
     console.log("in the development stage");
@@ -17,13 +20,33 @@ app.set("view engine" , "ejs");
 app.use(express.json());
 app.use(express.urlencoded({extended : true}));
 
+const sessionStore = MongoStore.create({
+    mongoUrl : process.env.DATABASE,
+    mongoOptions : {
+        useUnifiedTopology : true,
+    },
+    collectionName : process.env.SessionTable,
+});
+
 //cookie
-app.use(cookieSession({
-    name : "Authenticator",
-    maxAge : 86400 * 1000,
-    keys : [process.env.CookieKey],
-    // secure : true,
-    // resave : false,
+// app.use(cookieSession({
+//     name : "Authenticator",
+//     maxAge : 86400 * 1000,
+//     keys : [process.env.CookieKey],
+//     // secure : true,
+//     // resave : false,
+// }))
+
+//lets try to use express session
+app.use(session({
+    secret : process.env.CookieKey,
+    resave : false,
+    saveUninitialized : false,
+    store : sessionStore,
+    cookie : {
+        maxAge : 86400 * 1000,
+        secure : false,
+    }
 }))
 
 //passport middleware

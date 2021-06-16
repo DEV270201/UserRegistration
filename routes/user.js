@@ -2,7 +2,7 @@ const express = require("express");
 const userController = require("../controller/userController");
 const validateInput = require("../Joi/UserJoi");
 const passport = require("passport");
-const { AuthenticationError } = require("../Errors");
+// const { AuthenticationError } = require("../Errors");
 const AuthMiddleware = require("../Auth/AuthMiddleware");
 
 const router = express.Router();
@@ -24,12 +24,14 @@ router.get("/dashboard",AuthMiddleware,(req,res,next)=>{
 })
 
 router.get("/profile",AuthMiddleware,(req,res)=>{
-    // console.log(req.session.maxAge);
+    console.log(req.session.cookie.maxAge);
+    console.log(req.sessionID);
     res.render("profile" , {user : req.user , title : "Profile"});
 })
 
 router.get("/logout",(req,res)=>{
     req.logout();
+    req.session.destroy();
     res.redirect("/");
 })
 
