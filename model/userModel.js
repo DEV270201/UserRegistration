@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+// const { number } = require("joi");
 
 
 const userSchema = mongoose.Schema({
@@ -9,6 +10,9 @@ const userSchema = mongoose.Schema({
     username : {
         type : String,
         // unique : [true,"User already exists!"],
+    },
+    age : {
+        type : Number,
     },
     password : {
         type : String,

@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html>
 <body>
-    <%if (message != "") {%>
+
+    <%if (success_msg != "") {%>
+        <div class="success">
+            <h2 class="success_text"><%= success_msg %></h2>
+        </div>
+    <% } %>
+
+    <% if(error_msg != "") {%>
         <div class="error">
-            <h2 class="error_text"><%= message %></h2>
+            <h2 class="error_text"><%= error_msg %></h2>
         </div>
     <% } %>
 
@@ -11,10 +18,22 @@
     
         let msg_div = document.querySelector(".error");
         let msg = document.querySelector(".error_text");
+
+        let msg_div1 = document.querySelector(".success");
+        let msg1 = document.querySelector(".success_text");
         // let body = document.
-        if(msg != undefined){
+        if(success_msg != undefined){
+            setTimeout(()=>{
+               console.log(msg_div1.parentNode);
+               console.log(msg1);
+               msg_div1.parentNode.removeChild(msg_div1);
+            },3000);
+        }
+
+        if(error_msg != undefined){
             setTimeout(()=>{
                console.log(msg_div.parentNode);
+               console.log(msg);
                msg_div.parentNode.removeChild(msg_div);
             },3000);
         }

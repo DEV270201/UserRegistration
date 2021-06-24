@@ -50,13 +50,20 @@ app.use(session({
     }
 }));
 
-//since the flash messages are stored in the sessions , so first set up the sessions
-app.use(flash());
 
 //passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
+//since the flash messages are stored in the sessions , so first set up the sessions
+app.use(flash());
+
+//global variables .... can be used inside views only
+app.use((req,res,next)=>{
+    res.locals.success_msg = req.flash("success_msg");
+    res.locals.error_msg = req.flash("error_msg");
+    next();
+});
 
 //static files middleware
 app.use(express.static(`${__dirname}/public`));

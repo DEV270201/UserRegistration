@@ -7,6 +7,7 @@
 <body>
     <%- include("../partials/navbar.ejs" , {title : title}) %>
     <div class="home">
+        <%- include("../partials/messages.ejs") %>
         <h1 class="head_home">Hi, <%= user.username %> ...you are now logged into the system</h1>
     </div>
 </body>

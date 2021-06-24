@@ -38,11 +38,11 @@ const Authentication = (pass_port) => {
          //check the errors
          if(err.statusCode === 400 || err.statusCode === 401){
              console.log(err);
-             done(null,false, { message : err.message });
+             return done(null,false, { message : err.message });
          }else{
             console.log("b2");
             //if the problem is occurred from the server side then we simply pass the user
-            done(err);
+            return done(err);
          }
      }
 }));

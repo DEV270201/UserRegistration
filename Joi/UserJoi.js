@@ -8,6 +8,8 @@ const validateInput = async(args)=>{
 
      username : Joi.string().alphanum().required().error(new ClientError("Username is required")),
 
+     age : Joi.number().required().error(new ClientError("Enter a valid age")),
+
      password : Joi.string().max(20).required().error(new ClientError("Password is required and should be less than 20 characters")),
 
      password2 : Joi.ref("password"),

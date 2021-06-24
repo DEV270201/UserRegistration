@@ -12,6 +12,7 @@ exports.Register = async (userCredentials) => {
             name: userCredentials.name,
             username:  userCredentials.username,
             password: userCredentials.password,
+            age : userCredentials.age,
         };
         await User.create(userObj);
         return;
