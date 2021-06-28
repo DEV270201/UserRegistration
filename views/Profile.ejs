@@ -11,6 +11,9 @@
         <h5 class="name">Name :  <%= user.name %></h5>
         <h5 class="name">UserName :  <%= user.username %></h5>
         <h5 class="name">Age :  <%= user.age %></h5>
+        <div class="name">
+            <img src="data:image/<%= user.img.contentType %>;base64,<%= user.img.data %>" class="img"/>
+        </div>
     </div>
 </body>
 </html>
