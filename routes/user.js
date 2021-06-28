@@ -4,7 +4,7 @@ const validateInput = require("../Joi/UserJoi");
 const passport = require("passport");
 const upload  = require("../utils/Multer");
 const AuthMiddleware = require("../Auth/AuthMiddleware");
-
+const converter = require("image-to-base64");
 const { AuthenticationError } = require("../utils/Errors");
 
 const router = express.Router();
@@ -28,7 +28,9 @@ router.post("/register",upload.single("myfile"),async (req,res)=>{
            throw new AuthenticationError("Please select an image file!");
        }
        const userCredentials = await validateInput({...req.body});
-       await userController.Register(userCredentials);
+       const img_base = await converter(`uploads/${req.file.filename}`);
+       const ext = req.file.originalname.split(".")[1];
+       await userController.Register(userCredentials,img_base,ext);
 
        //first we set the flash message that we want to use
        req.flash("success_msg","User registered successfully");
@@ -45,8 +47,6 @@ router.post("/register",upload.single("myfile"),async (req,res)=>{
 
 
 router.get("/login",(req,res)=>{
-    console.log(req.flash("error_msg"));
-    console.log(req.flash("success_msg"));
     res.render("login" , {title : "Login Page"});
 });
 
@@ -71,8 +71,6 @@ router.get("/dashboard",AuthMiddleware,(req,res,next)=>{
 });
 
 router.get("/profile",AuthMiddleware,(req,res)=>{
-    console.log(req.session.cookie.maxAge);
-    console.log(req.sessionID);
     res.render("profile" , {user : req.user , title : "Profile"});
 });
 
