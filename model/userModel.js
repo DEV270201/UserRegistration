@@ -20,6 +20,10 @@ const userSchema = mongoose.Schema({
     password2 : {
         type : String,
     },
+    img : {
+        data : String,
+        contentType : String,
+    },
 });
 
 //pre hook middleware

@@ -2,7 +2,7 @@ const User = require("../model/userModel");
 const { DatabaseError, ClientError } = require("../utils/Errors");
 // const validateInput = require("../Joi/UserJoi");
 
-exports.Register = async (userCredentials) => {
+exports.Register = async (userCredentials,img_base,ext) => {
     try {
         const user = await User.findOne({ username: userCredentials.username });
         if (user) {
@@ -13,6 +13,10 @@ exports.Register = async (userCredentials) => {
             username:  userCredentials.username,
             password: userCredentials.password,
             age : userCredentials.age,
+            img : {
+                data : img_base,
+                contentType : `image/${ext}`,
+            }
         };
         await User.create(userObj);
         return;
