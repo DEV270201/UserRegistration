@@ -1,4 +1,4 @@
-const {AuthenticationError} = require("../Errors");
+// const {AuthenticationError} = require("../Errors");
 
 
 const AuthMiddleware = (req,res,next)=>{

@@ -44,8 +44,9 @@ app.use(session({
     resave : false,
     saveUninitialized : false,
     store : sessionStore,
+    rolling : true,  //it extends the period by maxAge of the cookie on every request
     cookie : {
-        maxAge : 86400 * 1000,
+        maxAge : 5 * 60 * 1000, //if the user is inactive for more than 5 minutes then the user will be logged out of the session
         secure : false,
     }
 }));

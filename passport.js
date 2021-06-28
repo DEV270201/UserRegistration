@@ -52,6 +52,7 @@ const Authentication = (pass_port) => {
 //serializing the user i.e sending some unique property which will be stuffed inside the cookie
 passport.serializeUser((user,done)=>{
    console.log("serializing");
+   console.log(user._id);
    done(null,user.id);
 
 });
