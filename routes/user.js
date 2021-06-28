@@ -8,6 +8,9 @@ const AuthMiddleware = require("../Auth/AuthMiddleware");
 const router = express.Router();
 
 router.get("/",(req,res)=>{
+    if(req.user){                       //if the user is already logged in then redirect to dashboard
+        res.redirect("/dashboard");
+    }
     res.render("home" , {title : "Authenticator"});
 });
 
@@ -45,7 +48,7 @@ router.post("/login",passport.authenticate("local",{
     failureRedirect : "/login",
     successRedirect : "/dashboard",
     failureFlash : true,
-    successFlash : "User logged in successfully",
+    // successFlash : "User logged in successfully",
 }),(req,res,next)=>{});
 
 //for login page
