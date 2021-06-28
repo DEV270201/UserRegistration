@@ -1,18 +1,30 @@
 const express = require("express");
 const app = express();
 const userRouter = require("./routes/user");
-const {NotFoundError} = require("./Errors");
+const {NotFoundError} = require("./utils/Errors");
 const passport = require("passport");
 // const cookieSession = require("cookie-session");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash"); //used for flashing messages on redirects
+// const multer = require("multer");
 require("./passport")(passport);
 
 
 if(process.env.NODE_ENV === "development"){
     console.log("in the development stage");
 }
+
+// const storage = multer.diskStorage({
+//     destination : function(req,file,cb){
+//         cb(null,`${__dirname}/uploads`);
+//     },
+//     filename : function(req,file,cb){
+
+//     }
+// })
+
+// const upload = multer({dest : `${__dirname}/uploads`});
 
 //set the view engine
 app.set("view engine" , "ejs");

@@ -2,10 +2,14 @@ const express = require("express");
 const userController = require("../controller/userController");
 const validateInput = require("../Joi/UserJoi");
 const passport = require("passport");
-// const { AuthenticationError } = require("../Errors");
+const upload  = require("../utils/Multer");
 const AuthMiddleware = require("../Auth/AuthMiddleware");
 
+const { AuthenticationError } = require("../utils/Errors");
+
 const router = express.Router();
+
+
 
 router.get("/",(req,res)=>{
     if(req.user){                       //if the user is already logged in then redirect to dashboard
@@ -18,9 +22,11 @@ router.get("/register",(req,res)=>{
     res.render("register" , {title : "Registration Page"});
 });
 
-router.post("/register",async (req,res)=>{
+router.post("/register",upload.single("myfile"),async (req,res)=>{
     try { 
-       console.log(req.body);
+       if(!req.file){
+           throw new AuthenticationError("Please select an image file!");
+       }
        const userCredentials = await validateInput({...req.body});
        await userController.Register(userCredentials);
 

@@ -10,12 +10,13 @@
     <div class="file_upload">
         <%- include("../partials/messages.ejs") %>
         <h5>Please fill all the required fields</h5>
-        <form action="/register" method="POST" enctype="application/x-www-form-urlencoded" class="myform">
+        <form action="/register" method="POST" enctype="multipart/form-data" class="myform">
             <input type="text" placeholder="Enter your name" name="name" />
             <input type="text" placeholder="Enter your userName" name="username" />
             <input type="text" placeholder="Enter your Age" name="age" />
             <input type="password" placeholder="Enter your password" name="password" />
             <input type="password" placeholder="Confirm password" name="password2" />
+            <input type="file" name="myfile"/>
             <button type="submit" class="mybtn">Submit</button>
         </form>
     </div>

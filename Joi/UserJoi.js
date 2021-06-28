@@ -1,5 +1,5 @@
 const Joi = require("joi");
-const {ClientError} = require("../Errors");
+const {ClientError} = require("../utils/Errors");
 
 const validateInput = async(args)=>{
 //created the schema for validation

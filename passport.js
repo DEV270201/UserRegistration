@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require("./model/userModel");
-const {AuthenticationError,ClientError} = require("./Errors");
+const {AuthenticationError,ClientError} = require("./utils/Errors");
 const bcrypt = require("bcryptjs");
 
 //using the local strategy

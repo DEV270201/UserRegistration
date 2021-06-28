@@ -1,5 +1,5 @@
 const User = require("../model/userModel");
-const { DatabaseError, ClientError } = require("../Errors");
+const { DatabaseError, ClientError } = require("../utils/Errors");
 // const validateInput = require("../Joi/UserJoi");
 
 exports.Register = async (userCredentials) => {
