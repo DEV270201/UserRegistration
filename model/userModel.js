@@ -21,8 +21,8 @@ const userSchema = mongoose.Schema({
         type : String,
     },
     img : {
-        data : String,
-        contentType : String,
+        data : String,   //for storing the base64 string
+        contentType : String, //the contentType of the image
     },
 });
 

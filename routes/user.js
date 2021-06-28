@@ -28,8 +28,12 @@ router.post("/register",upload.single("myfile"),async (req,res)=>{
            throw new AuthenticationError("Please select an image file!");
        }
        const userCredentials = await validateInput({...req.body});
+
+       //converting image into base64 encoding
        const img_base = await converter(`uploads/${req.file.filename}`);
+       //extracting out the extension
        const ext = req.file.originalname.split(".")[1];
+       
        await userController.Register(userCredentials,img_base,ext);
 
        //first we set the flash message that we want to use
