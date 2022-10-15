@@ -1,4 +1,4 @@
 # UserRegistration
-trying to implement user registration 
+Tried to implement user registration by using passport.js and sessions
 
-My first Node.js project.
+
